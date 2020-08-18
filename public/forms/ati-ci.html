@@ -175,46 +175,25 @@
 
     <script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
     <script>
-        async function getNumberOfScenarios() {
-            const result = await $.ajax({
-                type: "GET",
-                url: '/Scenarios/count',
-                success: function (data) {
-                    console.log(data);
-                },
-                dataType: "json"
-            });
-
-            return result.count;
-        }
         // Get worker Id:
         var params = (new URL(document.location)).searchParams;
         var workerID = params.get("wid");
-        // Get random scenario number
-        // hardcoded number for now. Will fetch count from db preferably.
-        var maxScenarioCount = 3;
+        var scenarioId = params.get("sid");
 
         document.getElementById("workerId").value = workerID;
 
-        var sid = getRandomInt(1, maxScenarioCount);
 
-        var url = "/?wid=" + workerID + "&sid=" + sid;
+        var url = "/?wid=" + workerID + "&sid=" + scenarioId;
         window.onload = function () {
             var time = new Date();
             document.getElementById("startTime").value = time;
         };
 
-        // Redirect to next stage
+        // Redirect to next stage after 2 seconds
         $("#survey-form").submit(function (event) {
-            window.location.href = url;
+            setTimeout("window.location.href = url;", 2000);
             event.preventDefault();
         });
-
-        function getRandomInt(min, max) {
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
 
         
     </script>
