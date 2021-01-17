@@ -74,6 +74,9 @@ const f_municipality = require('./fulfillments/default/municipalityIntent');
 const f_final = require('./fulfillments/default/NoMoreConstraintsIntent');
 const f_submit = require('./fulfillments/default/ConfirmSubmission');
 const f_tryagain = require('./fulfillments/default/tryagain');
+const f_allhouses = require('./fulfillments/default/showAllHousesIntent');
+const f_listOption = require('./fulfillments/default/listOptionSelectIntent');
+
 
 
 app.get('/error', function (req, res) {
@@ -112,6 +115,9 @@ app.post('/', express.json(), (req, res) => {
     intentMap.set('NoMoreConstraintsIntent', f_final.fulfillment);
     intentMap.set('ConfirmSubmission', f_submit.fulfillment);
     intentMap.set('tryagain', f_tryagain.fulfillment);
+    intentMap.set('showAllHousesIntent', f_allhouses.fulfillment);
+    intentMap.set('listOptionSelectIntent', f_listOption.fulfillment);
+
 
 
     // Todo: connect each custom intent with custom fulfillment modules

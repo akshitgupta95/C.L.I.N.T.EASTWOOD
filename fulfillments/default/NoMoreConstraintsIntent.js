@@ -14,7 +14,7 @@ module.exports = {
                 let context = agent.contexts.find(x => x.name === "global");
                 let secondtry = false;
                 if (context == null) {
-                    secondtry = true;
+                    // secondtry = true;
                     context = agent.contexts.find(x => x.name === "global2");
                 }
 
@@ -330,11 +330,14 @@ function showHouseAndRetry(house, agent) {
                     "type": "chips",
                     "options": [
                         {
-                            "text": "Submit"
+                            "text": "Submit House"
                         },
                         {
                             "text": "Try Again",
-                        }
+                        },
+                        {
+                            "text": "Show All houses"
+                        },
                     ]
                 }
             ]
