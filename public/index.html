@@ -10,60 +10,63 @@
 </head>
 
 <body>
-  
-<div class="container">
-  <aside class="manual">
-    <h2>Find your perfect house</h2>
-    <ul>
-      <li style="font-size:20px"> Imagine you are the student as given in the below scenario. Your task is to interact with the bot to find a suitable housing for this student </li>
-      <li style="font-size:20px">There is only one house that matches the given situation correctly</li>
-      <li style="font-size:20px">Here is the given scenario</li>
 
-      <p id="scenario">
-<!--        Alice is looking for a place to stay in Delft for at least 1 year.<br>-->
-<!--        She is an international student and requires registration in the municipality.<br>-->
-<!--        She has no budget constraints as long as the commute time is less than 10 minutes by bike.<br>-->
-<!--        Further, she prefers a place near the city centre and supermarkets.<br> She also prefers a studio compared to sharing.<br>-->
-      </p>
-      <script src="scenario.js"></script>
-      <li style="font-size:20px">When you are ready, just write "the name of the student that you are emulating" on the interface to begin the conversation</li>
+    <div class="container">
+        <div class="header">
+            <h1>Find Your Perfect House</h1>
+        </div>
+        <div class="contentWrapper">
+            <aside class="manual" >
+                <!--<h2>Find your perfect house</h2>-->
+                <ul>
+                    <li style="font-size:20px"> Imagine you are the student as given in the below scenario. Your task is to interact with the bot to find a suitable housing for this student </li>
+                    <li style="font-size:20px">There is only one house that matches the given situation correctly</li>
+                    <li style="font-size:20px">Here is the given scenario</li>
 
-    </ul>
-	<p style="font-size:20px; margin-top:10%">
-	Once you have completed the provided task, please click on the button below to continue<br>
-	<a  href="https://fs11.formsite.com/V9PQWO/hnvnvvqayi/index.html"><button id="continue">Continue</button></a>
-  </aside>
-  
-  <meta name="viewport" content="width-device-width, initial-scale=1">
-  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+                    <p id="scenario">
+                        <!--        Alice is looking for a place to stay in Delft for at least 1 year.<br>-->
+                        <!--        She is an international student and requires registration in the municipality.<br>-->
+                        <!--        She has no budget constraints as long as the commute time is less than 10 minutes by bike.<br>-->
+                        <!--        Further, she prefers a place near the city centre and supermarkets.<br> She also prefers a studio compared to sharing.<br>-->
+                    </p>
+                    <script src="scenario.js"></script>
+                    <li style="font-size:20px">When you are ready, just write "the name of the student that you are emulating" on the interface to begin the conversation</li>
 
-  <df-messenger
-          intent="WELCOME"
-          expand="true"
-          chat-title="Delft Housing Chat"
-          agent-id="7dc8dc8a-219a-4ef2-af8f-1af9b26fae2d"
-          language-code="en"
-          user-id="userssss"
-  ></df-messenger>
-  <script src="configDialogFlow.js"></script>
+                </ul>
+                <p style="font-size:20px; margin-top:10%">
+                    Once you have completed the provided task, please click on the button below to continue<br>
+                    <a href="https://fs11.formsite.com/V9PQWO/hnvnvvqayi/index.html"><button id="continue">Continue</button></a>
+            </aside>
+        </div>
+
+        <meta name="viewport" content="width-device-width, initial-scale=1">
+        <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+
+        <df-messenger intent="WELCOME"
+                      expand="true"
+                      chat-title="Delft Housing Chat"
+                      agent-id="7dc8dc8a-219a-4ef2-af8f-1af9b26fae2d"
+                      language-code="en"
+                      user-id="userssss"></df-messenger>
+        <script src="configDialogFlow.js"></script>
 
 
-<!--  <iframe-->
-<!--          width="350"-->
-<!--          height="430"-->
-<!--          src="https://console.dialogflow.com/api-client/demo/embedded/7dc8dc8a-219a-4ef2-af8f-1af9b26fae2d">-->
-<!--  </iframe>-->
-</div>
-<script src="app.js"></script>
-<script>
-    var url = "/exit?wid=" + workerID;
+        <!--  <iframe-->
+        <!--          width="350"-->
+        <!--          height="430"-->
+        <!--          src="https://console.dialogflow.com/api-client/demo/embedded/7dc8dc8a-219a-4ef2-af8f-1af9b26fae2d">-->
+        <!--  </iframe>-->
+    </div>
+    <script src="app.js"></script>
+    <script>
+        var url = "/exit?wid=" + workerID;
 
-    $("#continue").click(function (event) {
-        window.location.href = url;
-        event.preventDefault();
-    });
+        $("#continue").click(function (event) {
+            window.location.href = url;
+            event.preventDefault();
+        });
 
-</script>
+    </script>
 
 </body>
 
