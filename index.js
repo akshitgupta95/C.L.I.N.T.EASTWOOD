@@ -13,7 +13,7 @@ app.use(express.json());
 var mongoose=require('mongoose');
 var House = require("./fulfillments/default/models/house");
 var Scenario = require("./fulfillments/default/models/scenarios");
-var Worker=require("./fulfillments/default/models/worker");
+var Worker = require("./fulfillments/default/models/worker");
 
 // Database Connectivity
 var mongoDB = 'mongodb+srv://akshitgupta:akshitgupta@cluster0.jvxlv.mongodb.net/clinteastwood?retryWrites=true&w=majority';
@@ -181,6 +181,24 @@ app.route('/checkConstraints').post(async (req, res) => {
   let response=checkAllConstraints(scenario.constraints, req.body.inputConstraints);
   res.send(response);
 });
+
+app.route('/log-form-responses').post(async (req, res) => {
+
+    let entryLog = {
+        workerId: req.body.workerId,
+        formType: req.body.formType,
+        interface: req.body.interface,
+        timestamp: req.body.timestamp,
+        questionId: req.body.questionId,
+        response: req.body.response,
+        duration: req.body.duration
+    };
+    db.collection("formLogs").insertOne(entryLog, function (err, res) {
+        if (err) throw err;
+        console.log("1 record inserted");
+    });
+    res.send(true)
+})
 
 app.route('/getWorkerScenario').get(async (req, res) => {
     let workerId = 1;
