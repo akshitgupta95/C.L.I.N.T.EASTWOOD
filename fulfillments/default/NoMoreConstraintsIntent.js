@@ -7,12 +7,13 @@ var Scenario = require("./models/scenarios");
 module.exports = {
 
     fulfillment: function (agent) {
-        let workerIdandSession = JSON.parse(agent.originalRequest.payload.userId);
-        return Scenario.findOne({id: workerIdandSession.scenarioId}).populate('correctHouse')
+        let workerIdandSessionandAccuracy = JSON.parse(agent.originalRequest.payload.userId);
+        let accuracy=workerIdandSessionandAccuracy.accuracy;
+        return Scenario.findOne({id: workerIdandSessionandAccuracy.scenarioId}).populate('correctHouse')
             .then(data => {
                 let response = "Okay, ";
                 let context = agent.contexts.find(x => x.name === "global");
-                let secondtry = false;
+                let secondtry = false; //TODO: not needed in current implementation, unlimited tries allowed
                 if (context == null) {
                     // secondtry = true;
                     context = agent.contexts.find(x => x.name === "global2");
@@ -66,10 +67,10 @@ module.exports = {
                 let foundAllConstraints = checkAllConstraints(data.constraints, inputConstraints);
 
                 if (!secondtry) {
-                    if (foundAllConstraints) {
+                    if (foundAllConstraints && accuracy.toString()=="1") {
                         //show correct house here and end
                         let houseToShow = data.correctHouse;
-                        showHouseAndEnd(houseToShow, agent);
+                        showHouseAndRetry(houseToShow, agent);
 
                     } else {
                         //show random incorrect house here and ask for try again
@@ -81,7 +82,7 @@ module.exports = {
                             });
 
                     }
-                } else { //second and last try
+                } else { //second and last try //TODO: will never be executed in current implementation with unlimited retries
                     if (foundAllConstraints) {
                         //show correct house here and end
                         let houseToShow = data.correctHouse;
