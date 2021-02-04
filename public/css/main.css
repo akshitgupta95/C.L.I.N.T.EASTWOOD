@@ -76,3 +76,11 @@
 .manual {
 	justify-content: center;
 }
+
+
+ df-messenger {
+	 /*--df-messenger-bot-message: #878fac;*/
+	 --df-messenger-button-titlebar-color: #0D908D;
+	 /*--df-messenger-chat-background-color: #fafafa;*/
+	 --df-messenger-send-icon: #0D908D;
+ }
