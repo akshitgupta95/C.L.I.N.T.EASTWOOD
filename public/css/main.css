@@ -9,22 +9,6 @@
 
 }
 
-.button {
-    display: block;
-    width: 115px;
-    height: 30px;
-    background: #42A5F5;
-    padding: 10px;
-	margin: 10px;
-    text-align: center;
-	text-decoration:none !important;
-    border-radius: 5px;
-    color: white;
-	font-size:20px;
-	font-family:Arial;
-    line-height: 30px;
-}
-
 #continue {
 	background-color: #0eaaa6;
 	color: #fff;
@@ -40,6 +24,27 @@
 	font-size: 17px;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	line-height: 30px;
+}
+
+#continue:disabled {
+	background-color: #cccccc;
+	color: #fff;
+	display: block;
+	width: 115px;
+	height: 60px;
+	padding: 10px;
+	margin: 10px;
+	text-align: center;
+	text-decoration: none !important;
+	border-radius: 5px;
+	color: white;
+	font-size: 17px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	line-height: 30px;
+}
+
+.manual{
+	width:50vw;
 }
 
 #scenario {
@@ -78,9 +83,11 @@
 }
 
 
- df-messenger {
-	 /*--df-messenger-bot-message: #878fac;*/
-	 --df-messenger-button-titlebar-color: #0D908D;
-	 /*--df-messenger-chat-background-color: #fafafa;*/
-	 --df-messenger-send-icon: #0D908D;
- }
+df-messenger {
+	/*--df-messenger-bot-message: #878fac;*/
+	/*--df-messenger-button-titlebar-color: #0D908D;*/
+	--df-messenger-button-titlebar-color: #0EAAA6;
+	/*--df-messenger-chat-background-color: #fafafa;*/
+	/*--df-messenger-send-icon: #0D908D;*/
+	--df-messenger-button-titlebar-color: #0EAAA6;
+}
