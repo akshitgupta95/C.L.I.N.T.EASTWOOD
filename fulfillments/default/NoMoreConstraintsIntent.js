@@ -63,7 +63,6 @@ module.exports = {
                     },
                     "maxRent": context.parameters.number != null ? context.parameters.number : null
                 };
-
                 let foundAllConstraints = checkAllConstraints(data.constraints, inputConstraints);
 
                 if (!secondtry) {
