@@ -45,13 +45,15 @@
 
 .manual{
 	width:50vw;
+	padding: 10px;
+	margin: 5px;
 }
 
 #scenario {
 	align-items: center;
 	justify-content: center;
 	display: flex;
-	width: 50%;
+	width: 100%;
 	background: #EEEEEE;
 	border-radius: 5px;
 	border-color: #000000;
