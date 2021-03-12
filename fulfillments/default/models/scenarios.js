@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 var scenarioSchema = new Schema({
     id: Number, //alice
     description: String,
+    scenarioName: String,
     constraints: {
         nearSupermarkets: Boolean,
         municipalityRegistration: Boolean,
@@ -16,6 +17,8 @@ var scenarioSchema = new Schema({
         maxRent: Number
     },
     correctHouse : { type: Schema.Types.ObjectId, ref: 'House' },
+
+
 });
 
 
