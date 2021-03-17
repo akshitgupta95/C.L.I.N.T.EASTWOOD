@@ -239,10 +239,6 @@
                 alert("Incorrect condition or stage provided");
         }
 
-        // Get random scenario number
-        // hardcoded number for now. Will fetch count from db preferably.
-        var maxScenarioCount = 3;
-
         var questions = document.forms['survey-form'].getElementsByClassName('response');
 
 
@@ -257,8 +253,6 @@
         }
 
         document.getElementById("workerId").value = workerID;
-
-        var sid = getRandomInt(1, maxScenarioCount);
 
         var url = "/?cnd=" + condition + "&stage=" + stage+"&wid= " + workerID + " &sid=" + sid + " &acc=" + acc;
         window.onload = function () {
