@@ -470,11 +470,18 @@
 
     <script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
     <script>
+
+
         var lastActionTime = new Date();
         var workerID = null;
+        var condition = params.get("cnd");
+        var stage = params.get("stage");
+        var acc = params.get("acc");
+
         window.onload = function () {
                 var params = (new URL(document.location)).searchParams;
-                workerID = params.get("wid");
+            workerID = params.get("wid");
+
 
             console.log(workerID);
             document.getElementById("workerId").value = workerID;
@@ -483,6 +490,21 @@
             lastActionTime = time;
             document.getElementById("startTime").value = time;
         };
+
+        
+        // Redirect to next stage
+        $("#survey-form").submit(function (event) {
+
+            if (stage == 1) {
+                var url = "https://crowdsensing.tk/dss?PROLIFIC_PID=" + workerID + "&cnd=" + condition + "&stage=" + stage;
+                window.location.href = url;
+            }
+            else if (stage == 2) {
+                window.location.href = "https://app.prolific.co/submissions/complete?cc=6F8D57DC";
+            }
+            
+            event.preventDefault();
+        });
 
         var questions = document.forms['survey-form'].getElementsByClassName('response');
 

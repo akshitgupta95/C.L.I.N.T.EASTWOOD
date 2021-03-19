@@ -51,12 +51,6 @@
         <div class="header" style="margin: auto; text-align: center; background: #0EAAA6; height: 120px;">
             <span style="display: inline-block; vertical-align: middle; margin: auto; "><h2 style="color: #FFFFFF; font-size: 18pt; font-family: sans-serif; vertical-align: middle; display: inline-block">How well are you acquainted with Conversational Interfaces?</h2></span>
         </div>
-
-        <span>
-            <p>
-                This survey is used to understand how well you are acquainted with conversational interfaces. Some examples of conversational interfaces are Google Assistant, Siri and C.L.I.N.T Eastwood. This survey is based on the ATI Scale which measures the user's affinity towards using certain technological systems
-            </p>
-        </span>
         <form id="survey-form" action="https://send.pageclip.co/ssJ875Dr8gsBFokkWaOxD7zvXK70aOkU/ati-ci-task" class="pageclip-form" method="post">
         <!--<form id="survey-form" action="submitFormResponse" class="pageclip-form" method="post">-->
             <input type="hidden" id="workerId" class="workerId" name="workerId" value="900">
@@ -164,9 +158,6 @@
                 </tbody>
             </table>
             <br><hr>
-            <label style="font-size: 14px">Any Comments Before We Start?</label><br>
-            <input class="addedFeedback" type="textarea" name="addedFeedback">
-            <br><hr>
             <button type="submit" class="pageclip-form__submit" style="background: #0EAAA6; width: 20%; padding: 10px; margin: 0 auto; display: block">
                 <span style="color: #FFFFFF">Submit Response</span>
             </button>
@@ -192,11 +183,52 @@
         }
 
         // Get worker Id:
-        var params = (new URL(document.location)).searchParams;
+        const queryString = window.location.search;
+        var params = new URLSearchParams(queryString);
         var workerID = params.get("wid");
-        // Get random scenario number
-        // hardcoded number for now. Will fetch count from db preferably.
-        var maxScenarioCount = 3;
+        var condition = params.get("cnd");
+        var stage = params.get("stage");
+        var acc = params.get("acc");
+
+        var sid = 0;
+
+        // Get parameter values
+        switch (true) {
+            case (condition == 5) && (stage == 1):
+                sid = getRandomInt(1, 3);
+                acc = 0;
+                break;
+            case (condition == 5) && (stage == 2):
+                sid = getRandomInt(4, 6);
+                acc = 0;
+                break;
+            case (condition == 6) && (stage == 1):
+                sid = getRandomInt(1, 3);
+                acc = 1;
+                break;
+            case (condition == 6) && (stage == 2):
+                sid = getRandomInt(4, 6);
+                acc = 1;
+                break;
+            case (condition == 7) && (stage == 1):
+                sid = getRandomInt(4, 6);
+                acc = 0;
+                break;
+            case (condition == 7) && (stage == 2):
+                sid = getRandomInt(1, 3);
+                acc = 0;
+                break;
+            case (condition == 8) && (stage == 1):
+                sid = getRandomInt(4, 6);
+                acc = 1;
+                break;
+            case (condition == 8) && (stage == 2):
+                sid = getRandomInt(1, 3);
+                acc = 1;
+                break;
+            default:
+                alert("Incorrect condition or stage provided");
+        }
 
         var questions = document.forms['survey-form'].getElementsByClassName('response');
 
@@ -213,14 +245,18 @@
 
         document.getElementById("workerId").value = workerID;
 
-        var sid = getRandomInt(1, maxScenarioCount);
-
-        var url = "/?wid=" + workerID + "&sid=" + sid;
+        var url = "/?cnd=" + condition + "&stage=" + stage+"&wid= " + workerID + " &sid=" + sid + " &acc=" + acc;
         window.onload = function () {
             var time = new Date();
             lastActionTime = time;
             console.log(lastActionTime);
             document.getElementById("startTime").value = time;
+
+            if (stage == 2) {
+                window.location.href = url;
+                event.preventDefault();
+            }
+
         };
 
         // Redirect to next stage
