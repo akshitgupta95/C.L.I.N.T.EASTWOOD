@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crowd Computing</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -15,29 +19,46 @@
         <div class="header">
             <h1>Find Your Perfect House</h1>
         </div>
-        <div class="contentWrapper">
-            <aside class="manual" >
-                <!--<h2>Find your perfect house</h2>-->
-                <ul>
-                    <li style="font-size:20px"> Imagine you are the student as given in the below scenario. Your task is to interact with the bot to find a suitable housing for this student </li>
-                    <li style="font-size:20px">There is only one house that matches the given situation correctly</li>
-                    <li style="font-size:20px">Here is the given scenario</li>
+        <aside class="contentWrapper">
+            <!--<aside class="manual" >-->
+            <!--<h2>Find your perfect house</h2>-->
+            <!--<ul>
+    <li style="font-size:20px"> Imagine you are the student as given in the below scenario. Your task is to interact with the bot to find a suitable housing for this student </li>
+    <li style="font-size:20px">There is only one house that matches the given situation correctly</li>
+    <li style="font-size:20px">Here is the given scenario</li>
 
-                    <p id="scenario">
-                        <!--        Alice is looking for a place to stay in Delft for at least 1 year.<br>-->
-                        <!--        She is an international student and requires registration in the municipality.<br>-->
-                        <!--        She has no budget constraints as long as the commute time is less than 10 minutes by bike.<br>-->
-                        <!--        Further, she prefers a place near the city centre and supermarkets.<br> She also prefers a studio compared to sharing.<br>-->
-                    </p>
+    <p id="scenario">-->
+            <!--        Alice is looking for a place to stay in Delft for at least 1 year.<br>-->
+            <!--        She is an international student and requires registration in the municipality.<br>-->
+            <!--        She has no budget constraints as long as the commute time is less than 10 minutes by bike.<br>-->
+            <!--        Further, she prefers a place near the city centre and supermarkets.<br> She also prefers a studio compared to sharing.<br>-->
+            <!--</p>
+            <script src="scenario.js"></script>
+            <li style="font-size:20px">When you are ready, just write "the name of the student that is assigned to you in the scenario" on the chat box to begin the conversation</li>
+
+        </ul>
+        <p style="font-size:20px; margin-top:10%">
+            Once you have completed the provided task, please click on the button below to continue<br>
+            <button id="continue">Submit</button></a>
+    </aside>-->
+            <div class="card-header">
+                <h5>
+                    Imagine you are the student as given in the below scenario. Your task is to interact with the bot to find a suitable housing for this student <br />
+                </h5>
+            </div>
+            <div class="card-body">
+                <p id="scenario">
                     <script src="scenario.js"></script>
-                    <li style="font-size:20px">When you are ready, just write "the name of the student that is assigned to you in the scenario" on the chat box to begin the conversation</li>
+                </p>
+            </div>
+            <div class="card-footer">
+                <strong>
+                    Your task is to enter the requirements as stated in the scenario to find a suitable housing for yourself. There is at least one house that matches the given situation correctly.
+                </strong>
+            </div>
 
-                </ul>
-                <p style="font-size:20px; margin-top:10%">
-                    Once you have completed the provided task, please click on the button below to continue<br>
-                    <button id="continue">Submit</button></a>
-            </aside>
-        </div>
+            <button id="continue"">Submit</button></a>
+        </aside>
 
         <meta name="viewport" content="width-device-width, initial-scale=1">
         <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>

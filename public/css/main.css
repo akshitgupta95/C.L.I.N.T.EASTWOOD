@@ -49,7 +49,7 @@
 	margin: 5px;
 }
 
-#scenario {
+/*#scenario {
 	align-items: center;
 	justify-content: center;
 	display: flex;
@@ -61,7 +61,7 @@
 	font-size:17px;
 	font-family:Courier New;
 	padding: 10px;
-}
+}*/
 
 .header {
 	width: 100%;
@@ -82,6 +82,23 @@
 
 .manual {
 	justify-content: center;
+}
+
+
+.card-header {
+	padding: .75rem 1.25rem;
+	margin-bottom: 0;
+	background-color: rgba(0,0,0,.03);
+	border-bottom: 1px solid rgba(0,0,0,.125);
+	font-family: Verdana, Geneva, Tahoma, sans-serif
+
+}
+
+
+.card-body {
+	padding: 10px;
+	cursor: default;
+	border: 1px solid rgba(0,0,0,.125);
 }
 
 
