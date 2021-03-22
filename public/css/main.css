@@ -2,12 +2,13 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  margin-left: 0 !important;
 }
 
-.container iframe {
+/*.container iframe {
   margin: auto;
 
-}
+}*/
 
 #continue {
 	background-color: #0eaaa6;
