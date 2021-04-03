@@ -1,8 +1,9 @@
 .container {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: 0 !important;
+	width: calc(100% - 370px);
+	max-width: 50vw;
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: 0 !important;
 }
 
 /*.container iframe {
@@ -44,12 +45,6 @@
 	line-height: 30px;
 }
 
-.manual{
-	width:50vw;
-	padding: 10px;
-	margin: 5px;
-}
-
 /*#scenario {
 	align-items: center;
 	justify-content: center;
@@ -65,7 +60,8 @@
 }*/
 
 .header {
-	width: 100%;
+	width: calc(100% - 370px);
+	max-width: 50vw;
 	overflow: hidden;
 	background: #0EAAA6;
 	color: white;
@@ -75,14 +71,12 @@
 }
 
 .contentWrapper {
+	width: calc(100% - 370px);
+	max-width: 50vw;
 	height: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
 	position: relative;
-}
-
-.manual {
-	justify-content: center;
 }
 
 
