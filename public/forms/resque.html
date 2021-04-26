@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
         span.section {
             color: #FFFFFF;
@@ -482,13 +483,17 @@
 
         var lastActionTime = new Date();
         var workerID = null;
-        var condition = params.get("cnd");
-        var stage = params.get("stage");
-        var acc = params.get("acc");
+        var condition = null;
+        var stage = null;
+        var acc = null;
 
         window.onload = function () {
                 var params = (new URL(document.location)).searchParams;
             workerID = params.get("wid");
+
+            condition = params.get("cnd");
+            stage = params.get("stage");
+            acc = params.get("acc");
 
 
             console.log(workerID);
@@ -504,11 +509,11 @@
         $("#survey-form").submit(function (event) {
 
             if (stage == 1) {
-                var url = "https://crowdsensing.tk/dss?PROLIFIC_PID=" + workerID + "&cnd=" + condition + "&stage=" + stage;
+                var url = "https://crowdsensing.tk/dss?PROLIFIC_PID=" + workerID + "&cnd=" + condition + "&stage=2";
                 window.location.href = url;
             }
             else if (stage == 2) {
-                window.location.href = "https://app.prolific.co/submissions/complete?cc=6F8D57DC";
+                window.location.href = "https://app.prolific.co/submissions/complete?cc=84186F2D";
             }
             
             event.preventDefault();
@@ -530,7 +535,7 @@
         function logFormAction(question, response) {
 
             var time = new Date();
-            var duration = time.getTime() - lastActionTime.getTime();
+            var duration = time - lastActionTime;
 
             var req = {
                 workerId: workerID,

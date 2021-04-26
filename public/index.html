@@ -80,7 +80,7 @@
     </div>
     <script src="app.js"></script>
     <script>
-        var url = "/exit?wid=" + workerID;
+        var url = "/exit?cnd=" + condition + "&stage=" + stage + "&wid=" + workerID + "&acc=" + accuracy;
 
         $("#continue").click(function (event) {
             window.location.href = url;

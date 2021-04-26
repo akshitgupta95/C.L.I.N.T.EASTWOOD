@@ -1,6 +1,8 @@
 
 let workerID = params.get("wid");
-let accuracy= params.get("acc");
+let accuracy = params.get("acc");
+let condition = params.get("cnd");
+let stage = params.get("stage");
 const dfMessenger = document.querySelector('df-messenger');
 
 //trying to change df-messenger height
