@@ -65,7 +65,8 @@
         <div class="header" style="margin: auto; text-align: center; background: #0EAAA6; height: 120px;">
             <span style="display: inline-block; vertical-align: middle; margin: auto; "><h2 style="color: #FFFFFF; font-size: 20pt; font-family: sans-serif; vertical-align: middle;">Tell Us What You Think Of The System</h2></span>
         </div>
-        <form id="survey-form" action="https://send.pageclip.co/ssJ875Dr8gsBFokkWaOxD7zvXK70aOkU/exit-survey-form-resque" class="pageclip-form" method="post">
+        <!--<form id="survey-form" action="https://send.pageclip.co/ssJ875Dr8gsBFokkWaOxD7zvXK70aOkU/exit-survey-form-resque" class="pageclip-form" method="post">-->
+        <form id="survey-form" class="pageclip-form">
             <input type="hidden" id="workerId" class="workerId" name="workerId" value="default-id">
             <input type="hidden" id="interfaceType" class="interfaceType" name="interfaceType" value="ci">
             <input type="hidden" id="startTime" class="startTime" name="startTime" value="">
@@ -479,34 +480,80 @@
 
     <script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
     <script>
-
-
         var lastActionTime = new Date();
-        var workerID = null;
-        var condition = null;
-        var stage = null;
-        var acc = null;
 
-        window.onload = function () {
-                var params = (new URL(document.location)).searchParams;
-            workerID = params.get("wid");
+        const queryString = window.location.search;
+        var params = new URLSearchParams(queryString);
+        console.log(params);
+        var workerID = params.get("wid");
+        var condition = params.get("cnd");
+        var stage = params.get("stage");
+        var acc = params.get("acc");
+        var sid = params.get("sid");
 
-            condition = params.get("cnd");
-            stage = params.get("stage");
-            acc = params.get("acc");
-
-
-            console.log(workerID);
-            document.getElementById("workerId").value = workerID;
-
-            var time = Date.now();
-            lastActionTime = time;
-            document.getElementById("startTime").value = time;
-        };
+        console.log(workerID);
+        document.getElementById("workerId").value = workerID;
+        var time = Date.now();
+        document.getElementById("startTime").value = time;
 
         
         // Redirect to next stage
         $("#survey-form").submit(function (event) {
+
+            var formArray = $(this).serializeArray();
+
+            console.log(formArray);
+            var data = objectifyForm(formArray);
+            console.log(data)
+
+            var stopTime = Date.now();
+
+            // Creating request
+            var req = {
+                workerId: workerID,
+                startTime: data['startTime'],
+                stopTime: stopTime,
+                condition: condition,
+                stage: stage,
+                accuracy: acc,
+                sid: sid,
+                quality_q1: data['1-1'],
+                quality_q2: data['1-2'],
+                quality_q3: data['1-3'],
+                interaction_q1: data['2-1'],
+                interaction_q2: data['2-2'],
+                interface_q1: data['3-1'],
+                interface_q2: data['3-2'],
+                interface_q3: data['3-3'],
+                easeOfUse_q1: data['4-1'],
+                easeOfUse_q2: data['4-2'],
+                easeOfUse_q3: data['4-3'],
+                usefulness_q1: data['5-1'],
+                usefulness_q2: data['5-2'],
+                control_q1: data['6-1'],
+                control_q2: data['6-2'],
+                attitudes_q1: data['7-1'],
+                attitudes_q2: data['7-2'],
+                attitudes_q3: data['7-3'],
+                attitudes_q4: data['7-4'],
+                attitudes_q5: data['7-5'],
+                intentions_q1: data['8-1'],
+                intentions_q2: data['8-2'],
+                intentions_q3: data['8-3'],
+                intentions_q4: data['8-4'],
+                intentions_q5: data['8-5'],
+                intentions_q6: data['8-6']
+            };
+            console.log(req);
+
+            const result = $.post("/log-exit",
+                req,
+                function (data, status) {
+                    console.log("Data: " + data + "\nStatus: " + status);
+                });
+
+
+
 
             if (stage == 1) {
                 var url = "https://crowdsensing.tk/dss?PROLIFIC_PID=" + workerID + "&cnd=" + condition + "&stage=2";
@@ -530,6 +577,15 @@
 
                 logFormAction(question, response);
             };
+        }
+
+        function objectifyForm(formArray) {
+            //serialize data function
+            var returnArray = {};
+            for (var i = 0; i < formArray.length; i++) {
+                returnArray[formArray[i]['name']] = formArray[i]['value'];
+            }
+            return returnArray;
         }
 
         function logFormAction(question, response) {

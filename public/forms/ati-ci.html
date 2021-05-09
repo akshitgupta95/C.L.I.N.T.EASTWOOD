@@ -59,8 +59,8 @@
         <div class="header" style="margin: auto; text-align: center; background: #0EAAA6; height: 120px;">
             <span style="display: inline-block; vertical-align: middle; margin: auto; "><h2 style="color: #FFFFFF; font-size: 18pt; font-family: sans-serif; vertical-align: middle; display: inline-block">How well are you acquainted with Conversational Interfaces?</h2></span>
         </div>
-        <form id="survey-form" action="https://send.pageclip.co/ssJ875Dr8gsBFokkWaOxD7zvXK70aOkU/ati-ci-task" class="pageclip-form" method="post">
-        <!--<form id="survey-form" action="submitFormResponse" class="pageclip-form" method="post">-->
+        <!--<form id="survey-form" action="https://send.pageclip.co/ssJ875Dr8gsBFokkWaOxD7zvXK70aOkU/ati-ci-task" class="pageclip-form" method="post">-->
+        <form id="survey-form" class="pageclip-form">
             <input type="hidden" id="workerId" class="workerId" name="workerId" value="900">
             <input type="hidden" id="startTime" class="startTime" name="startTime" value="">
             <table style="width: 100%;">
@@ -253,9 +253,9 @@
 
         document.getElementById("workerId").value = workerID;
 
-        var url = "/?cnd=" + condition + "&stage=" + stage+"&wid=" + workerID + " &sid=" + sid + " &acc=" + acc;
+        var url = "/?cnd=" + condition + "&stage=" + stage+"&wid=" + workerID + "&sid=" + sid + "&acc=" + acc;
         window.onload = function () {
-            var time = new Date();
+            var time = Date.now();
             lastActionTime = time;
             console.log(lastActionTime);
             document.getElementById("startTime").value = time;
@@ -268,7 +268,42 @@
         };
 
         // Redirect to next stage
-        $("#survey-form").submit(function (event) {
+        $("form").submit(function (event) {
+
+            var formArray = $(this).serializeArray();
+
+            //console.log(formArray);
+            var data = objectifyForm(formArray);
+            //console.log(data)
+
+            var stopTime = Date.now();
+
+            // Creating request
+            var req = {
+                workerId: workerID,
+                startTime: data['startTime'],
+                stopTime: stopTime,
+                condition: condition,
+                stage: stage,
+                accuracy: acc,
+                q1: data['1-1'],
+                q2: data['1-2'],
+                q3: data['1-3'],
+                q4: data['1-4'],
+                q5: data['1-5'],
+                q6: data['1-6'],
+                q7: data['1-7'],
+                q8: data['1-8'],
+                q9: data['1-9']
+            }
+
+            const result = $.post("/log-ati",
+                req,
+                function (data, status) {
+                    console.log("Data: " + data + "\nStatus: " + status);
+                });
+
+
             window.location.href = url;
             event.preventDefault();
         });
@@ -277,6 +312,15 @@
             min = Math.ceil(min);
             max = Math.floor(max);
             return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function objectifyForm(formArray) {
+            //serialize data function
+            var returnArray = {};
+            for (var i = 0; i < formArray.length; i++) {
+                returnArray[formArray[i]['name']] = formArray[i]['value'];
+            }
+            return returnArray;
         }
 
         function logFormAction(question, response) {
