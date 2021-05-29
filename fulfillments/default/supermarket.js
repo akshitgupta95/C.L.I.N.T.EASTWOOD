@@ -4,7 +4,7 @@ module.exports = {
 
     fulfillment: function (agent) {
         // agent.user.storage.supermarket=``;
-        let context = agent.contexts["0"];
+        let context = agent.contexts.find(x => x.name === "global");
         let parameters=context.parameters;
         parameters.supermarkets=true;
         agent.context.set('global', 20, parameters);
