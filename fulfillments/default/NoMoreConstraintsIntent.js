@@ -66,11 +66,13 @@ module.exports = {
 
                 let foundAllConstraints = checkAllConstraints(data.constraints, inputConstraints, workerIdandSessionandAccuracy);
                 console.log("wid: "+workerIdandSessionandAccuracy.workerId+" foundAllConstraints: "+ foundAllConstraints);
+                let parameters=context.parameters;
+                parameters.correctHouse=data.correctHouse.name;
+
                 if (!secondtry) {
                     if (foundAllConstraints && accuracy.toString()=="1") {
                         //show correct house here and end
                         let houseToShow = data.correctHouse;
-                        let parameters=context.parameters;
                         parameters.houseSelected=houseToShow.name;
                         agent.context.set('global', 40, parameters); //storing current shown house for ConfirmSubmit Intent
                         showHouseAndRetry(houseToShow, agent);
@@ -81,7 +83,6 @@ module.exports = {
                         return House.find({_id: {$ne: correctHouse._id}})
                             .then(data => {
                                 let incorrectHouse = data[Math.floor(Math.random() * data.length)];
-                                let parameters=context.parameters;
                                 parameters.houseSelected=incorrectHouse.name;
                                 agent.context.set('global', 40, parameters); //storing current shown house for ConfirmSubmit Intent
                                 showHouseAndRetry(incorrectHouse, agent)
