@@ -65,7 +65,7 @@ module.exports = {
                 };
 
                 let foundAllConstraints = checkAllConstraints(data.constraints, inputConstraints, workerIdandSessionandAccuracy);
-                console.log("wid: "+workerIdandSessionandAccuracy+" foundAllConstraints: "+ foundAllConstraints);
+                console.log("wid: "+workerIdandSessionandAccuracy.workerId+" foundAllConstraints: "+ foundAllConstraints);
                 if (!secondtry) {
                     if (foundAllConstraints && accuracy.toString()=="1") {
                         //show correct house here and end
@@ -273,7 +273,7 @@ function checkAllConstraints(scenarioConstraints, inputConstraints, workerIdandS
     if (!Array.isArray(unmetConstraints) || !unmetConstraints.length)
         return true;
     else {
-        console.log("wid: "+workerIdandSessionandAccuracy+ " unmetConstraints: "+unmetConstraints.toString());
+        console.log("wid: "+workerIdandSessionandAccuracy.workerId+ " unmetConstraints: "+unmetConstraints.toString());
         return false;
     }
 
