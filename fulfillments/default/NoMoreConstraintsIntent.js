@@ -70,7 +70,8 @@ module.exports = {
                     if (foundAllConstraints && accuracy.toString()=="1") {
                         //show correct house here and end
                         let houseToShow = data.correctHouse;
-                        context.parameters.houseSelected=houseToShow.name;
+                        let parameters=context.parameters;
+                        parameters.houseSelected=houseToShow.name;
                         agent.context.set('global', 40, parameters); //storing current shown house for ConfirmSubmit Intent
                         showHouseAndRetry(houseToShow, agent);
 
@@ -80,7 +81,8 @@ module.exports = {
                         return House.find({_id: {$ne: correctHouse._id}})
                             .then(data => {
                                 let incorrectHouse = data[Math.floor(Math.random() * data.length)];
-                                context.parameters.houseSelected=incorrectHouse.name;
+                                let parameters=context.parameters;
+                                parameters.houseSelected=incorrectHouse.name;
                                 agent.context.set('global', 40, parameters); //storing current shown house for ConfirmSubmit Intent
                                 showHouseAndRetry(incorrectHouse, agent)
                             });
