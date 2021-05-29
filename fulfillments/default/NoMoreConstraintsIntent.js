@@ -63,8 +63,9 @@ module.exports = {
                     },
                     "maxRent": context.parameters.number != null ? context.parameters.number : null
                 };
-                let foundAllConstraints = checkAllConstraints(data.constraints, inputConstraints);
 
+                let foundAllConstraints = checkAllConstraints(data.constraints, inputConstraints, workerIdandSessionandAccuracy);
+                console.log("wid: "+workerIdandSessionandAccuracy+" foundAllConstraints: "+ foundAllConstraints);
                 if (!secondtry) {
                     if (foundAllConstraints && accuracy.toString()=="1") {
                         //show correct house here and end
@@ -233,7 +234,7 @@ module.exports = {
 
 };
 
-function checkAllConstraints(scenarioConstraints, inputConstraints) {
+function checkAllConstraints(scenarioConstraints, inputConstraints, workerIdandSessionandAccuracy) {
     let unmetConstraints = [];
     if (scenarioConstraints.nearSupermarkets) {
         if (!inputConstraints.nearSupermarkets)
@@ -271,8 +272,10 @@ function checkAllConstraints(scenarioConstraints, inputConstraints) {
     }
     if (!Array.isArray(unmetConstraints) || !unmetConstraints.length)
         return true;
-    else
+    else {
+        console.log("wid: "+workerIdandSessionandAccuracy+ " unmetConstraints: "+unmetConstraints.toString());
         return false;
+    }
 
 }
 
