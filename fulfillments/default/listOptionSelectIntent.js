@@ -1,3 +1,5 @@
+const logs = require('./models/logs');
+const log = require('./helpers/utility');
 
 const {Payload} =require("dialogflow-fulfillment");
 module.exports = {
@@ -13,6 +15,11 @@ module.exports = {
         let parameters=context.parameters;
         parameters.houseSelected=option;
         agent.context.set('global', 40, parameters); //storing house for ConfirmSubmit Intent
+        let workerIdandSessionandAccuracy = JSON.parse(agent.originalRequest.payload.userId);
+        log({
+            info: "EVENT HouseSelectedFromList",
+            wid: workerIdandSessionandAccuracy.workerId
+        }, logs);
 
         agent.add(`The House selected is: ${option}`);
         agent.add(new Payload(agent.UNSPECIFIED, {

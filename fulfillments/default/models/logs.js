@@ -4,7 +4,7 @@ const Schema  = mongoose.Schema;
 
 const LogSchema = new Schema({
     time: Date,
-    info: Mixed,
+    info: String,
     wid: String,
 
 },{collection: 'CIlogs'});
