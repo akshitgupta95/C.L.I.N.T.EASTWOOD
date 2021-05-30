@@ -2,6 +2,8 @@ const {Card} = require('dialogflow-fulfillment');
 const {Payload} = require("dialogflow-fulfillment");
 var House = require("./models/house");
 var Scenario = require("./models/scenarios");
+const logs = require('./models/logs');
+const log = require('./helpers/utility');
 
 
 module.exports = {
@@ -66,6 +68,10 @@ module.exports = {
 
                 let foundAllConstraints = checkAllConstraints(data.constraints, inputConstraints, workerIdandSessionandAccuracy);
                 console.log("wid: "+workerIdandSessionandAccuracy.workerId+" foundAllConstraints: "+ foundAllConstraints);
+                log({
+                    info: "foundAllConstraints: "+ foundAllConstraints,
+                    wid: workerIdandSessionandAccuracy.workerId
+                }, logs);
                 let parameters=context.parameters;
                 parameters.correctHouse=data.correctHouse.name;
 
@@ -280,7 +286,12 @@ function checkAllConstraints(scenarioConstraints, inputConstraints, workerIdandS
     if (!Array.isArray(unmetConstraints) || !unmetConstraints.length)
         return true;
     else {
+
         console.log("wid: "+workerIdandSessionandAccuracy.workerId+ " unmetConstraints: "+unmetConstraints.toString());
+        log({
+            info: " unmetConstraints: "+unmetConstraints.toString(),
+            wid: workerIdandSessionandAccuracy.workerId
+        }, logs);
         return false;
     }
 
