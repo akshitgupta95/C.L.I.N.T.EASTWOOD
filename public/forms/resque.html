@@ -549,7 +549,14 @@
             const result = $.post("/log-exit",
                 req,
                 function (data, status) {
+                    logFormAction("Exit Form Submission", "Submit Button clicked.")
                     console.log("Data: " + data + "\nStatus: " + status);
+                })
+                .done(function () {
+                    window.location.href = url;
+                })
+                .fail(function () {
+                    logFormAction("Exit Form Submission", "Failed API Call")
                 });
 
 
