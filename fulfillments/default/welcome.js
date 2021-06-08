@@ -12,7 +12,7 @@ module.exports = {
   fulfillment: function (agent) {
     let workerIdandSessionandAccuracy = JSON.parse(agent.originalRequest.payload.userId);
     log({
-      info: new Date().toDateString(),
+      info: new Date().toString(),
       event: "START",
       wid: workerIdandSessionandAccuracy.workerId,
       accuracy: workerIdandSessionandAccuracy.accuracy,

@@ -41,7 +41,7 @@ module.exports = {
 
         agent.add("Hope you like the house. Have a nice Day!");
         log({
-            info: new Date().toDateString(),
+            info: new Date().toString(),
             event: "END",
             wid: workerIdandSessionandAccuracy.workerId,
             accuracy: workerIdandSessionandAccuracy.accuracy,
