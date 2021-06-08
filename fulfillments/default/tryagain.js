@@ -9,8 +9,11 @@ module.exports = {
         agent.context.set({'name': 'global', 'lifespan': 40, 'parameters': {'givenName': name}});
         console.log("wid: "+ workerIdandSessionandAccuracy.workerId+" RESTART EVENT");
         log({
-            info: "RESTART EVENT",
-            wid: workerIdandSessionandAccuracy.workerId
+            info: new Date().toDateString(),
+            event: "RESTART",
+            wid: workerIdandSessionandAccuracy.workerId,
+            accuracy: workerIdandSessionandAccuracy.accuracy,
+            sid: workerIdandSessionandAccuracy.scenarioId
         }, logs);
         // agent.context.set({'name': 'global2', 'lifespan': 40, 'parameters': {'givenName': name}});
         agent.setFollowupEvent("RESTART");

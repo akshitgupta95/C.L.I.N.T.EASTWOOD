@@ -17,8 +17,11 @@ module.exports = {
         agent.context.set('global', 40, parameters); //storing house for ConfirmSubmit Intent
         let workerIdandSessionandAccuracy = JSON.parse(agent.originalRequest.payload.userId);
         log({
-            info: "EVENT HouseSelectedFromList",
-            wid: workerIdandSessionandAccuracy.workerId
+            info: option,
+            event: "HOUSE_SELECTED_FROM_LIST",
+            wid: workerIdandSessionandAccuracy.workerId,
+            accuracy: workerIdandSessionandAccuracy.accuracy,
+            sid: workerIdandSessionandAccuracy.scenarioId
         }, logs);
 
         agent.add(`The House selected is: ${option}`);

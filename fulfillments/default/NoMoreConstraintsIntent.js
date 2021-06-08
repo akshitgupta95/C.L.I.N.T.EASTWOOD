@@ -69,8 +69,11 @@ module.exports = {
                 let foundAllConstraints = checkAllConstraints(data.constraints, inputConstraints, workerIdandSessionandAccuracy);
                 console.log("wid: "+workerIdandSessionandAccuracy.workerId+" foundAllConstraints: "+ foundAllConstraints);
                 log({
-                    info: "foundAllConstraints: "+ foundAllConstraints,
-                    wid: workerIdandSessionandAccuracy.workerId
+                    info: ""+ foundAllConstraints,
+                    event: "ALL_CONSTRAINTS_FOUND",
+                    wid: workerIdandSessionandAccuracy.workerId,
+                    accuracy: workerIdandSessionandAccuracy.accuracy,
+                    sid: workerIdandSessionandAccuracy.scenarioId
                 }, logs);
                 let parameters=context.parameters;
                 parameters.correctHouse=data.correctHouse.name;
@@ -289,8 +292,11 @@ function checkAllConstraints(scenarioConstraints, inputConstraints, workerIdandS
 
         console.log("wid: "+workerIdandSessionandAccuracy.workerId+ " unmetConstraints: "+unmetConstraints.toString());
         log({
-            info: " unmetConstraints: "+unmetConstraints.toString(),
-            wid: workerIdandSessionandAccuracy.workerId
+            info: unmetConstraints.toString(),
+            event:"UNMET_CONSTRAINTS",
+            wid: workerIdandSessionandAccuracy.workerId,
+            accuracy: workerIdandSessionandAccuracy.accuracy,
+            sid: workerIdandSessionandAccuracy.scenarioId
         }, logs);
         return false;
     }
