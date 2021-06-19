@@ -501,6 +501,7 @@
         $("#survey-form").submit(function (event) {
 
             var formArray = $(this).serializeArray();
+            var url=""
 
             console.log(formArray);
             var data = objectifyForm(formArray);
@@ -546,6 +547,15 @@
             };
             console.log(req);
 
+            if (stage == 1) {
+                url = "https://crowdsensing.tk/dss?PROLIFIC_PID=" + workerID + "&cnd=" + condition + "&stage=2";
+                //window.location.href = url;
+            }
+            else if (stage == 2) {
+                url = "https://app.prolific.co/submissions/complete?cc=84186F2D";
+                //window.location.href = "https://app.prolific.co/submissions/complete?cc=84186F2D";
+            }
+
             const result = $.post("/log-exit",
                 req,
                 function (data, status) {
@@ -557,18 +567,7 @@
                 })
                 .fail(function () {
                     logFormAction("Exit Form Submission", "Failed API Call")
-                });
-
-
-
-
-            if (stage == 1) {
-                var url = "https://crowdsensing.tk/dss?PROLIFIC_PID=" + workerID + "&cnd=" + condition + "&stage=2";
-                window.location.href = url;
-            }
-            else if (stage == 2) {
-                window.location.href = "https://app.prolific.co/submissions/complete?cc=84186F2D";
-            }
+                });           
             
             event.preventDefault();
         });
